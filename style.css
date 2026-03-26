@@ -27,7 +27,7 @@ header {
   gap: 0px;
   z-index: 10;
 }
-.header {
+.header {A
   padding: 0px;
   text-align: Center;
   background: #;
@@ -54,7 +54,16 @@ nav a:hover {
   text-decoration: underline;
   color: #e9eb45;
 }
+.header a {
+  text-decoration: none;
+  color: #4c4c3c;
+  font-weight: normal;
+}
 
+.header a:hover {
+  text-decoration: underline;
+  color: #e9eb45;
+}
 main {
   display: flex;
   flex-direction: column;
@@ -162,6 +171,8 @@ main {
   display: block;
   width: 80%;
   max-width: 700px;
+ object-fit: contain;  /* add this */
+  max-height: 80vh;
 }
 
 /* Caption of Modal Image (Image Text) - Same Width as the Image */

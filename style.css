@@ -1,5 +1,5 @@
 body {
-  font-family: 'HiraginoKakuGothic', serif;
+  font-family: 'tsuku', serif;
   background-color: #fff;
   background-size: cover;
   background-position: center;
@@ -12,8 +12,8 @@ body {
 
 @font-face {
   font-family: 'tsuku';
-  src: fonts/FOT-TsukuAOldMinPr6-L.otf
-  font-weight: bold;
+  src: url('fonts/FOT-TsukuAOldMinPr6-L.otf') format('opentype');
+  font-weight: normal;
   font-style: normal;
 }
 

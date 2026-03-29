@@ -11,8 +11,8 @@ body {
 }
 
 @font-face {
-  font-family: 'HiraginoKakuGothic';
-  src: url('https://cdn.glitch.global/cab32a10-c938-4b3f-b2cf-bbcc3f9d5148/OradanoGSRR.ttf?v=1747278295881') format('opentype');
+  font-family: 'tsuku';
+  src: fonts/FOT-TsukuAOldMinPr6-L.otf
   font-weight: bold;
   font-style: normal;
 }

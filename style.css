@@ -10,7 +10,7 @@ body {
   flex-direction: column;
 }
 
-font-face {
+@font-face {
   font-family: 'tsuku';
   src: url('fonts/FOT-TsukuAOldMinPr6-L.otf') format('opentype');
   font-weight: normal;

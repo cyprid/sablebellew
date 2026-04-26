@@ -344,13 +344,77 @@
       </div>
     </main>
 
-    <!-- The Modal -->
+       <!-- Modal -->
     <div id="imageModal" class="modal">
       <span class="close">&times;</span>
-      <img class="modal-content" id="modalImage">
-      <div id="caption"></div>
+      <button class="modal-arrow prev" id="prevBtn">&#8249;</button>
+      <div id="modalInner" style="display:flex;flex-direction:column;align-items:center;pointer-events:none;">
+        <img class="modal-content" id="modalImage" style="pointer-events:auto;" />
+        <div id="caption" class="caption" style="pointer-events:auto;"></div>
+      </div>
+      <button class="modal-arrow next" id="nextBtn">&#8250;</button>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Hover effects for nav buttons
+        document.querySelectorAll('.image-button img').forEach((img) => {
+          const defaultSrc = img.dataset.default;
+          const hoverSrc = img.dataset.hover;
+          img.addEventListener('mouseover', () => { img.src = hoverSrc; });
+          img.addEventListener('mouseout', () => { img.src = defaultSrc; });
+        });
+
+        // Modal setup
+        const modal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("modalImage");
+        const captionText = document.getElementById("caption");
+        const closeBtn = document.querySelector(".close");
+        const prevBtn = document.getElementById("prevBtn");
+        const nextBtn = document.getElementById("nextBtn");
+
+        const images = Array.from(document.querySelectorAll(".modal-opener"));
+        let currentIndex = 0;
+
+        function openModal(index) {
+          currentIndex = index;
+          const img = images[currentIndex];
+          modal.style.display = "flex";
+          modalImg.src = img.src;
+          const caption = img.nextElementSibling;
+          captionText.innerHTML = (caption && caption.tagName === 'P') ? caption.textContent : img.alt;
+        }
+
+        function showPrev() {
+          currentIndex = (currentIndex - 1 + images.length) % images.length;
+          openModal(currentIndex);
+        }
+
+        function showNext() {
+          currentIndex = (currentIndex + 1) % images.length;
+          openModal(currentIndex);
+        }
+
+        images.forEach((img, index) => {
+          img.addEventListener("click", () => openModal(index));
+        });
+
+        prevBtn.addEventListener("click", (e) => { e.stopPropagation(); showPrev(); });
+        nextBtn.addEventListener("click", (e) => { e.stopPropagation(); showNext(); });
+
+        closeBtn.onclick = () => { modal.style.display = "none"; };
+
+        modal.addEventListener("click", (e) => {
+          if (e.target === modal) modal.style.display = "none";
+        });
+
+        document.addEventListener("keydown", (e) => {
+          if (modal.style.display !== "flex") return;
+          if (e.key === "Escape") modal.style.display = "none";
+          if (e.key === "ArrowLeft") showPrev();
+          if (e.key === "ArrowRight") showNext();
+        });
+      });
+    </script>
   </body>
 </html>
